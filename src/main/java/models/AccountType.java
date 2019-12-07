@@ -28,7 +28,7 @@ public class AccountType implements Serializable {
     private String name;
 
 
-    private List<Account> accountList = new ArrayList<>();
+   /* private List<Account> accountList = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "accountType")
@@ -38,5 +38,5 @@ public class AccountType implements Serializable {
 
     public void setAccountList(List<Account> accountList) {
         this.accountList = accountList;
-    }
+    }*/
 }

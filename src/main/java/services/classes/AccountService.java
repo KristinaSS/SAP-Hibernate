@@ -10,16 +10,16 @@ import utils.CreateList;
 import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
-public class AccountSerice implements IAccountService {
+public class AccountService implements IAccountService {
     private static List<Account> accountList;
 
 
     @Override
     public List<Account> findAll(Session session, CriteriaBuilder builder) {
-        List<Account> accountTypeList = CreateList.genericListCreator(builder, session, Account.class);
-        if(AccountSerice.accountList == null)
-            AccountSerice.accountList = accountTypeList;
-        return accountTypeList;
+        List<Account> accountList = CreateList.genericListCreator(builder, session, Account.class);
+        if(AccountService.accountList == null)
+            AccountService.accountList = accountList;
+        return accountList;
     }
 
     @Override

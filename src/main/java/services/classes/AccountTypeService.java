@@ -25,9 +25,11 @@ public class AccountTypeService implements IAccountTypeService {
         if (accountTypeList == null) {
             return null;
         } else {
-            for (AccountType account : accountTypeList) {
-                if (account.getAccountTypeID() == Integer.parseInt(Id))
-                    return account;
+            for (AccountType accountType : accountTypeList) {
+                if (accountType.getAccountTypeID() == Integer.parseInt(Id)) {
+                    System.out.println("Account type: "+ accountType);
+                    return accountType;
+                }
             }
             //todo make exception
             return null;

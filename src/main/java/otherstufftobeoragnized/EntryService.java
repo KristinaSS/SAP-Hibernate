@@ -1,15 +1,14 @@
-package services;
+package otherstufftobeoragnized;
 
 import models.Account;
 import models.AccountType;
 import org.hibernate.Session;
-import services.classes.AccountSerice;
+import services.classes.AccountService;
 import services.classes.AccountTypeService;
 import utils.MD5;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Scanner;
-import java.util.regex.Pattern;
 
 public class EntryService {
     private static Scanner scanner = new Scanner(System.in);
@@ -17,9 +16,13 @@ public class EntryService {
     private EntryService() {
     }
 
-    public static boolean login(String username, String password) {
-        AccountSerice serice = new AccountSerice();
-        Account account = serice.getOne(username);
+    public static boolean login(Session session, CriteriaBuilder builder) {
+        String username = enterEmail();
+        String password = enterPassword();
+
+        AccountService service = new AccountService();
+        service.findAll(session, builder);
+        Account account = service.getOne(username);
 
         return account != null && account.getPassword().equals(MD5.getHashString(password));
     }
@@ -27,9 +30,10 @@ public class EntryService {
     public static void signUp(Session session, CriteriaBuilder builder) {
         Account account = enterAccount(session, builder);
         //exception handling
-        AccountSerice serice = new AccountSerice();
+        System.out.println("Account: "+ account);
+        AccountService serice = new AccountService();
         serice.findAll(session,builder);
-        serice.createOne(account,session);
+        System.out.println("Return value" + serice.createOne(account,session));
     }
 
     private static Account enterAccount(Session session, CriteriaBuilder builder) {
@@ -102,7 +106,7 @@ public class EntryService {
     }
 
     private static AccountType enterAccountType(Session session, CriteriaBuilder builder){
-        int index = 0;
+        int index = 1;
 
         // todo fix new AccountType
         for(AccountType accountType : new AccountTypeService().findAll(session, builder)){

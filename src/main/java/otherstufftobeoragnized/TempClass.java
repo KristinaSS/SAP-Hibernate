@@ -1,3 +1,5 @@
+package otherstufftobeoragnized;
+
 import org.hibernate.Session;
 import utils.HibernateUtil;
 
@@ -9,7 +11,7 @@ public class TempClass {
      public static void start (){
           Session session = HibernateUtil.getSession();
           CriteriaBuilder builder = session.getCriteriaBuilder();
-
+          EntryService.login(session,builder);
      }
 
 
