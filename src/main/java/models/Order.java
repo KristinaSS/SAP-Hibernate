@@ -13,6 +13,12 @@ import java.io.Serializable;
 @Entity(name = "order")
 public class Order implements Serializable {
     private static final long serialVersionUID = 7696645133827053325L;
+
+    public Order(String dateTime, Account client) {
+        this.dateTime = dateTime;
+        this.client = client;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_id")

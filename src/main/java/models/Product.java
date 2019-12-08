@@ -33,4 +33,11 @@ public class Product implements Serializable {
     @Basic
     @Column(name = "price")
     private float price;
+
+    public Product(String name, int quantity, Catagory catagory, float price) {
+        this.name = name;
+        this.quantity = quantity;
+        this.catagory = catagory;
+        this.price = price;
+    }
 }
